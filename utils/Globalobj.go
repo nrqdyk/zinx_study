@@ -25,7 +25,7 @@ type GlobalObj struct {
 	MaxPackageSize uint32 //当前zinx框架数据包的最大值
 }
 
-//定义一个全聚德对外GlobalObj
+//定义一个全局的对外GlobalObj
 var GlobalObject *GlobalObj
 
 //从zinx.json去加载用于自定义的参数
@@ -45,7 +45,7 @@ func (g *GlobalObj) Reload() {
 func init() {
 	GlobalObject = &GlobalObj{
 		Name:           "ZinxServerApp",
-		Version:        "V0.4",
+		Version:        "V0.5",
 		TcpPort:        8999,
 		Host:           "0.0.0.0",
 		MaxConn:        1000,
