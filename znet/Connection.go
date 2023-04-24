@@ -22,6 +22,9 @@ type Connection struct {
 	//告知当前连接已经停止的channel
 	ExitChan chan bool
 
+	//用于无缓冲的管道，用于读写Goroutine之间的通信
+	msgChan chan []byte
+
 	//消息的管理MsgID和对应的处理API关系
 	MsgHandler ziface.IMsgHandle
 }
@@ -33,6 +36,7 @@ func NewConnection(conn *net.TCPConn, connID uint32, msgHandler ziface.IMsgHandl
 		ConnID:     connID,
 		MsgHandler: msgHandler,
 		isClosed:   false,
+		msgChan:    make(chan []byte),
 		ExitChan:   make(chan bool, 1),
 	}
 
